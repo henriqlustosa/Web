@@ -7,6 +7,7 @@ namespace web
 {
     public class Paciente
     {
+      
         public string Cd_prontuario { get; set; }
         public string cd_codigo { get; set; }
         public string Nm_situacao { get; set; }
@@ -73,4 +74,6 @@ namespace web
         public string Email { get; set; }
 
     }
+
+
 }

@@ -25,50 +25,19 @@ namespace web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            Paciente details = null;
+           
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            try
-            {
-                
-                string URI = "http://intranethspm:5003/hspmsgh-api/pacientes/paciente/11209913";
-                WebRequest request = WebRequest.Create(URI);
+            ListaDePacientes details= new ListaDePacientes();
 
-                HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create(URI);
-                // Sends the HttpWebRequest and waits for a response.
-                HttpWebResponse httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-
-                if (httpResponse.StatusCode == HttpStatusCode.OK)
-                {
-                    var reader = new StreamReader(httpResponse.GetResponseStream());
-
-                    JsonSerializer json = new JsonSerializer();
-
-                    var objText = reader.ReadToEnd();
-
-                  details = JsonConvert.DeserializeObject<Paciente>(objText);
-
-
-            
-
-
-                    // GridInternado.DataSource = details; // apresentação dos dados da lista
-                    //  GridInternado.DataBind();
-                }
-
-
-            }
-
-            catch (WebException ex)
-            {
-                string err = ex.Message;
-            }
+            Relatorio relatorio = new Relatorio(details);
             app.Run(async (context) =>
             {
 
-                await context.Response.WriteAsync( $"{details.Cd_prontuario, -10}{details.Nm_nome, -40}{details.Email}{details.In_sexo, 5}");
+                await relatorio.Imprimir(context);
             });
         }
     }
