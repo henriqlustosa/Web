@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace web
 {
-    public class Relatorio
+    public class Relatorio : IRelatorio
     {
-        private readonly ListaDePacientes pacientes;
+        private readonly IListaDePacientes pacientes;
 
-        public Relatorio(ListaDePacientes pacientes)
+        public Relatorio(IListaDePacientes pacientes)
         {
             this.pacientes = pacientes;
         }

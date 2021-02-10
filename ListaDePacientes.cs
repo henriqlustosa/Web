@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace web
 {
-    public class ListaDePacientes
+    public class ListaDePacientes : IListaDePacientes
     {
 
         public Paciente GetPacientes()

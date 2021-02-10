@@ -20,10 +20,12 @@ namespace web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IListaDePacientes, ListaDePacientes>();
+            services.AddTransient<IRelatorio, Relatorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IServiceProvider serviceProvider)
         {
            
 
@@ -31,9 +33,9 @@ namespace web
             {
                 app.UseDeveloperExceptionPage();
             }
-            ListaDePacientes details= new ListaDePacientes();
+            IListaDePacientes details= serviceProvider.GetService<IListaDePacientes>();
 
-            Relatorio relatorio = new Relatorio(details);
+            IRelatorio relatorio = serviceProvider.GetService<IRelatorio>();
             app.Run(async (context) =>
             {
 
