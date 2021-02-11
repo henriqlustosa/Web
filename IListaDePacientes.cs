@@ -1,7 +1,9 @@
-﻿namespace web
+﻿using System.Collections.Generic;
+
+namespace web
 {
     public interface IListaDePacientes
     {
-        Paciente GetPacientes();
+        List<Paciente> GetPacientes();
     }
 }

@@ -17,12 +17,15 @@ namespace web
         public async         Task
 Imprimir(HttpContext context)
         {
-          
-                // Criar um foreach para vários Pacientes
 
-                await context.Response.WriteAsync($"{pacientes.GetPacientes().Nm_nome,-40},{pacientes.GetPacientes().Cd_prontuario,-10},{pacientes.GetPacientes().In_sexo,5}");
+            // Criar um foreach para vários Pacientes
 
+            foreach (Paciente paciente in pacientes.GetPacientes())
+            {
 
+                await context.Response.WriteAsync($"{paciente.Nm_nome,-40},{paciente.Cd_prontuario,-10},{paciente.In_sexo,5}\r\n");
+
+            }
 
         }
     }
