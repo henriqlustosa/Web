@@ -18,8 +18,6 @@ namespace web
 Imprimir(HttpContext context)
         {
 
-            // Criar um foreach para vários Pacientes
-
             foreach (Paciente paciente in pacientes.GetPacientes())
             {
 
